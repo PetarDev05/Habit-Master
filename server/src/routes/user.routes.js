@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
   createUserAccount,
   deleteUserAccount,
-  loginUser,
+  signinUser,
   LogoutUser,
   extendUserSession,
 } from "../controllers/user.controllers.js";
@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.route("/").post(createUserAccount).delete(deleteUserAccount);
-router.route("/login").post(loginUser);
+router.route("/login").post(signinUser);
 router.route("/logout").post(LogoutUser);
 router.route("/refresh").post(extendUserSession);
 
