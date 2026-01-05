@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import userRouter from "./src/routes/user.routes.js";
+import errorHandler from "./src/middlewares/errorHandler.middlewares.js";
 
 export const app = express();
 
@@ -19,6 +21,11 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use((req, res) => {
+app.use((req, res, next) => {
   console.log(`REQUEST METHOD: ${req.method}\nREQUEST PATH: ${req.path}`);
+  next();
 });
+
+app.use("/api/users", userRouter);
+
+app.use(errorHandler);

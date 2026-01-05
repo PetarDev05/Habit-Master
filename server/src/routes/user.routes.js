@@ -1,0 +1,17 @@
+import { Router } from "express";
+import {
+  createUserAccount,
+  deleteUserAccount,
+  loginUser,
+  LogoutUser,
+  extendUserSession,
+} from "../controllers/user.controllers.js";
+
+const router = Router();
+
+router.route("/").post(createUserAccount).delete(deleteUserAccount);
+router.route("/login").post(loginUser);
+router.route("/logout").post(LogoutUser);
+router.route("/refresh").post(extendUserSession);
+
+export default router;
