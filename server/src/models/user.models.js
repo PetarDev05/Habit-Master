@@ -35,4 +35,8 @@ userSchema.statics.saveRefreshToken = async function (userId, refreshToken) {
   await this.findByIdAndUpdate(userId, { refreshToken }, { new: true });
 };
 
+userSchema.statics.deleteRefreshToken = async function (userId) {
+  await this.findByIdAndUpdate(userId, { refreshToken: null });
+};
+
 export default model("User", userSchema);
