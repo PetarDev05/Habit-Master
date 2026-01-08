@@ -1,6 +1,6 @@
 import User from "../models/user.models.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/generateTokens.utils.js";
-import { compareHashes } from "../utils/comparePasswords.utils.js";
+import { compareHashes } from "../utils/compareHashes.utils.js";
 import { hashing } from "../utils/hashing.utils.js";
 import APIError from "../utils/APIError.utils.js";
 

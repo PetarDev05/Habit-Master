@@ -5,8 +5,9 @@ import { registerUser } from "../services/registration.services.js";
 import { loginUser } from "../services/login.services.js";
 import { logout } from "../services/logout.services.js";
 import { deleteUser } from "../services/deleteAccount.services.js";
-
+import { extendSession } from "../services/extend.services.js";
 import APIResponse from "../utils/APIResponse.utils.js";
+import APIError from "../utils/APIError.utils.js";
 
 export const createUserAccount = async (req, res, next) => {
   try {
@@ -76,4 +77,13 @@ export const LogoutUser = async (req, res, next) => {
   }
 };
 
-export const extendUserSession = async (req, res, next) => {};
+export const extendUserSession = async (req, res, next) => {
+  try {
+    const refreshToken = req.cookies?.refreshToken;
+    const accessToken = await extendSession(refreshToken);
+    const response = new APIResponse(200, { accessToken }, "Session extended");
+    res.status(response.statusCode).json(response);
+  } catch (error) {
+    next(error);
+  }
+};
