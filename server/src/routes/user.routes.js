@@ -9,7 +9,8 @@ import {
 
 const router = Router();
 
-router.route("/").post(createUserAccount).delete(deleteUserAccount);
+router.route("/").post(createUserAccount);
+router.route("/:userId").delete(deleteUserAccount);
 router.route("/login").post(signinUser);
 router.route("/logout").post(LogoutUser);
 router.route("/refresh").post(extendUserSession);

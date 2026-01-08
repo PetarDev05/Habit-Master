@@ -1,4 +1,3 @@
-import User from "../models/user.models.js";
 import { validateRegistrationData } from "../validators/registration.validators.js";
 import { validateLoginData } from "../validators/login.validators.js";
 import { registerUser } from "../services/registration.services.js";
@@ -7,7 +6,6 @@ import { logout } from "../services/logout.services.js";
 import { deleteUser } from "../services/deleteAccount.services.js";
 import { extendSession } from "../services/extend.services.js";
 import APIResponse from "../utils/APIResponse.utils.js";
-import APIError from "../utils/APIError.utils.js";
 
 export const createUserAccount = async (req, res, next) => {
   try {
@@ -29,7 +27,7 @@ export const createUserAccount = async (req, res, next) => {
 
 export const deleteUserAccount = async (req, res, next) => {
   try {
-    const { userId } = req.body;
+    const { userId } = req.params;
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: false,
