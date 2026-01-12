@@ -32,7 +32,7 @@ userSchema.statics.saveUser = async function (username, email, password) {
 };
 
 userSchema.statics.saveRefreshToken = async function (userId, refreshToken) {
-  await this.findByIdAndUpdate(userId, { refreshToken }, { new: true });
+  await this.findByIdAndUpdate(userId, { refreshToken });
 };
 
 userSchema.statics.deleteRefreshToken = async function (userId) {

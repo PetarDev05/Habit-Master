@@ -15,8 +15,8 @@ export const createUserAccount = async (req, res, next) => {
     const { user, accessToken, refreshToken } = await registerUser(username, email, password);
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: false, // production: true
+      sameSite: "lax", // production: none
       maxAge: 10 * 24 * 60 * 60 * 1000,
     });
     const response = new APIResponse(200, { user, accessToken }, "You are registered successfully");
@@ -32,8 +32,8 @@ export const deleteUserAccount = async (req, res, next) => {
     validateMongooseId(userId);
     res.clearCookie("refreshToken", {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: false, // production: true
+      sameSite: "lax", // production: none
     });
     await deleteUser(userId);
     const response = new APIResponse(200, null, "User account deleted successfully");
@@ -50,8 +50,8 @@ export const signinUser = async (req, res, next) => {
     const { user, accessToken, refreshToken } = await loginUser(username, password);
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: false, // production: true
+      sameSite: "lax", // production: none
       maxAge: 10 * 24 * 60 * 60 * 1000,
     });
     const response = new APIResponse(200, { user, accessToken }, "You are logged in successfully");
@@ -67,8 +67,8 @@ export const LogoutUser = async (req, res, next) => {
     await logout(refreshToken);
     await res.clearCookie("refreshToken", {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: false, // production: true
+      sameSite: "lax", // production: none
     });
     const response = new APIResponse(200, null, "User logged out successfully");
     res.status(response.statusCode).json(response);
