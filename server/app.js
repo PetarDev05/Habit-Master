@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRouter from "./src/routes/user.routes.js";
+import weekRouter from "./src/routes/week.routes.js";
 import errorHandler from "./src/middlewares/errorHandler.middlewares.js";
 
 export const app = express();
@@ -27,5 +28,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/users", userRouter);
+app.use("/api/weeks", weekRouter);
 
 app.use(errorHandler);

@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken";
 import APIError from "../utils/APIError.utils.js";
+import { authomaticCorrection } from "../services/authomaticCheckInUpdate.services.js";
 
-export const authentication = (req, res, next) => {
+export const authentication = async (req, res, next) => {
   try {
     const authorization = req.headers.authorization;
     if (!authorization) {
@@ -15,7 +16,7 @@ export const authentication = (req, res, next) => {
 
     const { userId } = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
     req.user = { id: userId };
-
+    await authomaticCorrection(userId);
     next();
   } catch (error) {
     next(error);

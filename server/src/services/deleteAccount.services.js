@@ -1,8 +1,11 @@
+import CheckIn from "../models/checkin.models.js";
+import Habit from "../models/habit.models.js";
 import User from "../models/user.models.js";
+import Week from "../models/week.models.js";
 
 export const deleteUser = async (userId) => {
   await User.findByIdAndDelete(userId);
-  // dodaj logiku za brisanje svih dokumenata za weeks, habits, check-ins
+  await Week.deleteMany({ userId });
+  await Habit.deleteMany({ userId });
+  await CheckIn.deleteMany({ userId });
 };
-
-// ili napravi logiku da svako brisanje dokumenata ima svoj servis

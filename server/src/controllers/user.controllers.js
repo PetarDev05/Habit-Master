@@ -6,6 +6,7 @@ import { logout } from "../services/logout.services.js";
 import { deleteUser } from "../services/deleteAccount.services.js";
 import { extendSession } from "../services/extend.services.js";
 import APIResponse from "../utils/APIResponse.utils.js";
+import { validateMongooseId } from "../validators/mongooseId.validators.js";
 
 export const createUserAccount = async (req, res, next) => {
   try {
@@ -28,6 +29,7 @@ export const createUserAccount = async (req, res, next) => {
 export const deleteUserAccount = async (req, res, next) => {
   try {
     const { userId } = req.params;
+    validateMongooseId(userId);
     res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: false,
