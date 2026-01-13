@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "clear": "node scripts/resetDatabase.js",
+    "clear": "node scripts/resetDatabase.scripts.js",
+    "users": "node scripts/seedUsers.scripts.js",
+    "peki": "node scripts/seedWeeksPeki.scripts.js",
+    "miki": "node scripts/seedWeeksMiki.scripts.js",
     "format": "prettier --write ."
   },
   "keywords": [],
