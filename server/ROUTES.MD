@@ -6,7 +6,7 @@
 
 #### User routes base: /api/users
 
-------------------------------------------------------------
+---
 
 #### 1. REGISTER A USER
 
@@ -25,7 +25,7 @@ Request body: { username, email, password }
 - 401 INVALID_CREDENTIALS
 - 409 USER_ALREADY_EXISTS
 
-------------------------------------------------------------
+---
 
 #### 2. DELETE USER ACCOUNT
 
@@ -43,7 +43,7 @@ Request body: /
 
 - 400 VALIDATION_ERROR
 
-------------------------------------------------------------
+---
 
 #### 3. LOGIN A USER
 
@@ -62,7 +62,7 @@ Request body: { username, password }
 - 401 INVALID_CREDENTIALS
 - 404 USER_NOT_FOUND
 
-------------------------------------------------------------
+---
 
 #### 4. LOGOUT A USER
 
@@ -80,7 +80,7 @@ Request body: /
 
 - /
 
-------------------------------------------------------------
+---
 
 #### 5. EXTEND USER SESSION
 
@@ -105,7 +105,7 @@ Request body: /
 
 #### Week routes base: /api/weeks
 
-------------------------------------------------------------
+---
 
 #### 1. GET ALL DATA
 
@@ -123,7 +123,7 @@ Request body: /
 
 - 400 VALIDATION_ERROR
 
-------------------------------------------------------------
+---
 
 #### 2. CREATE NEW WEEK
 
@@ -143,8 +143,7 @@ Request body: { startingDate, habits }
 - 409 ACTIVE_WEEK_EXISTS
 - 400 INVALID_WEEK_STATE
 
-
-------------------------------------------------------------
+---
 
 #### 3. CHANGE CHECKIN STATUS
 
@@ -164,7 +163,7 @@ Request body: /
 - 404 CHECKIN_NOT_FOUND
 - 409 CONFLICT
 
-------------------------------------------------------------
+---
 
 #### 4. DELETE WEEK
 
@@ -182,4 +181,4 @@ Request body: /
 
 - 400 VALIDATION_ERROR
 
-------------------------------------------------------------
+---

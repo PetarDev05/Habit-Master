@@ -11,6 +11,6 @@ export const changeCheckIn = async (checkInId, userId) => {
     checkInId,
     { status: "done" },
     { new: true }
-  );  
+  );
   return updatedCheckIn;
 };

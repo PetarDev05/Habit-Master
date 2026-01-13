@@ -3,6 +3,7 @@
 This directory contains the backend implementation for the Habit Master application.
 
 The backend is responsible for:
+
 - user authentication and authorization
 - weekly habit management
 - daily check-in tracking

@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
+    "clear": "node scripts/resetDatabase.js",
     "format": "prettier --write ."
   },
   "keywords": [],
