@@ -3,7 +3,7 @@ import Habit from "../models/habit.models.js";
 import CheckIn from "../models/checkin.models.js";
 
 export const deleteWeekDocuments = async (weekId) => {
-  await Week.deleteOne({ weekId });
+  await Week.deleteOne({ _id: weekId });
   await Habit.deleteMany({ weekId });
   await CheckIn.deleteMany({ weekId });
 };

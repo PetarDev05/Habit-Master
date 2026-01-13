@@ -4,13 +4,13 @@ import Habit from "../models/habit.models.js";
 import CheckIn from "../models/checkin.models.js";
 import { createHabitsForInserting } from "../utils/habitsForInserting.utils.js";
 
+// DODAJ SESIJE I TRANSAKCIJE
+
 export const createWeek = async (userId, startDate, endDate, datesArray, habits) => {
-  const session = await mongoose.startSession();
-  session.startTransaction();
   try {
-    const newWeek = await Week.create({ userId, startDate, endDate }, { session });
+    const newWeek = await Week.create({ userId, startDate, endDate });
     const habitsForInserting = createHabitsForInserting(userId, habits, newWeek);
-    const newHabits = await Habit.insertMany(habitsForInserting, { session });
+    const newHabits = await Habit.insertMany(habitsForInserting);
 
     let checkinsForInserting = [];
     habits.forEach((habit, i) => {
@@ -24,14 +24,10 @@ export const createWeek = async (userId, startDate, endDate, datesArray, habits)
       checkinsForInserting = [...checkinsForInserting, ...checkins];
     });
 
-    const newCheckins = await CheckIn.insertMany(checkinsForInserting, { session });
+    const newCheckins = await CheckIn.insertMany(checkinsForInserting);
 
-    await session.commitTransaction();
     return { newWeek, newHabits, newCheckins };
   } catch (error) {
-    await session.abortTransaction();
     throw error;
-  } finally {
-    session.endSession();
   }
 };

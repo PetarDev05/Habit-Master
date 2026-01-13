@@ -1,15 +1,15 @@
 import APIError from "../utils/APIError.utils.js";
 
-export const compareDates = (checkIn, today) => {
-  if (today.getFullYear() !== checkIn.dueDate.getFullYear()) {
+export const compareDates = (date, today) => {
+  if (today.getFullYear() !== date.getFullYear()) {
     throw new APIError("Invalid time interval", 409, "CONFLICT");
   }
 
-  if (today.getMonth() !== checkIn.dueDate.getMonth()) {
+  if (today.getMonth() !== date.getMonth()) {
     throw new APIError("Invalid time interval", 409, "CONFLICT");
   }
 
-  if (today.getDate() !== checkIn.dueDate.getDate()) {
+  if (today.getDate() !== date.getDate()) {
     throw new APIError("Invalid time interval", 409, "CONFLICT");
   }
 };

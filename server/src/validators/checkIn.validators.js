@@ -1,9 +1,9 @@
-import APIError from "../utils/APIError.utils";
+import APIError from "../utils/APIError.utils.js";
 
 export const validateCheckInData = (checkIn, userId) => {
   if (!checkIn) {
     throw new APIError("Check-in not found", 404, "CHECKIN_NOT_FOUND");
-  }    
+  }
 
   if (String(checkIn.userId) !== userId) {
     throw new APIError("Invalid user credentials", 409, "CONFLICT");

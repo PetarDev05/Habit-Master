@@ -4,8 +4,9 @@ import { createWeek } from "../services/createWeek.services.js";
 import { createArrayOfDates } from "../utils/datesArray.utils.js";
 import APIResponse from "../utils/APIResponse.utils.js";
 import { validateMongooseId } from "../validators/mongooseId.validators.js";
-import APIError from "../utils/APIError.utils.js";
 import { changeCheckIn } from "../services/checkIn.services.js";
+import Week from "../models/week.models.js";
+import { validateWeekData } from "../validators/weekData.validators.js";
 
 export const getAllWeekData = async (req, res, next) => {
   try {
@@ -20,14 +21,14 @@ export const getAllWeekData = async (req, res, next) => {
 
 export const createNewWeek = async (req, res, next) => {
   try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const { startingDate, habits } = req.body;
     const activeWeek = await Week.findOne({ status: "active" });
-    if (activeWeek) {
-      throw new APIError("There is currently active week", 409, "ACTIVE_WEEK_EXISTS");
-    }
+    const startDate = new Date(startingDate);
+    validateWeekData(startDate, today, habits, activeWeek);
     const { userId } = req.params;
     validateMongooseId(userId);
-    const { startingDate, habits } = req.body;
-    const startDate = new Date(startingDate);
     const { endDate, datesArray } = createArrayOfDates(startDate);
     const { newWeek, newHabits, newCheckins } = await createWeek(
       userId,
@@ -36,6 +37,7 @@ export const createNewWeek = async (req, res, next) => {
       datesArray,
       habits
     );
+
     const response = new APIResponse(
       201,
       { newWeek, newHabits, newCheckins },
@@ -54,12 +56,13 @@ export const changeCheckInStatus = async (req, res, next) => {
     validateMongooseId(checkInId);
     validateMongooseId(user.id);
     const updatedCheckIn = await changeCheckIn(checkInId, user.id);
+    await updateWeekStatus(user.id);
     const response = new APIResponse(
       200,
       { updatedCheckIn },
       "You successfully checked-in for today"
     );
-    res.status(response.status).json(response);
+    res.status(response.statusCode).json(response);
   } catch (error) {
     next(error);
   }
