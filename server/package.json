@@ -9,6 +9,8 @@
     "users": "node scripts/seedUsers.scripts.js",
     "peki": "node scripts/seedWeeksPeki.scripts.js",
     "miki": "node scripts/seedWeeksMiki.scripts.js",
+    "delp": "node scripts/deletePekiData.scripts.js",
+    "delm": "node scripts/deleteMikiData.scripts.js",
     "format": "prettier --write ."
   },
   "keywords": [],
