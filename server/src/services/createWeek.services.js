@@ -4,8 +4,6 @@ import Habit from "../models/habit.models.js";
 import CheckIn from "../models/checkin.models.js";
 import { createHabitsForInserting } from "../utils/habitsForInserting.utils.js";
 
-// DODAJ SESIJE I TRANSAKCIJE
-
 export const createWeek = async (userId, startDate, endDate, datesArray, habits) => {
   try {
     const newWeek = await Week.create({ userId, startDate, endDate });

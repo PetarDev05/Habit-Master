@@ -11,6 +11,7 @@ import { validateWeekData } from "../validators/weekData.validators.js";
 export const getAllWeekData = async (req, res, next) => {
   try {
     const { userId } = req.params;
+    validateMongooseId(userId);
     const { weeks, habits, checkins } = await fetchData(userId);
     const response = new APIResponse(200, { weeks, habits, checkins }, "Data fetched successfully");
     res.status(response.statusCode).json(response);
@@ -23,12 +24,12 @@ export const createNewWeek = async (req, res, next) => {
   try {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    const { userId } = req.params;
+    validateMongooseId(userId);
     const { startingDate, habits } = req.body;
     const activeWeek = await Week.findOne({ status: "active" });
     const startDate = new Date(startingDate);
     validateWeekData(startDate, today, habits, activeWeek);
-    const { userId } = req.params;
-    validateMongooseId(userId);
     const { endDate, datesArray } = createArrayOfDates(startDate);
     const { newWeek, newHabits, newCheckins } = await createWeek(
       userId,
