@@ -1,0 +1,1 @@
+export const extendUserSession = async (req, res, next) => {};

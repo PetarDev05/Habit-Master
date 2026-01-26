@@ -1,0 +1,1 @@
+export const signOutFromTheAccount = async (req, res, next) => {};
