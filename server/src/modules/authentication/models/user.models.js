@@ -44,7 +44,7 @@ userSchema.statics.registerUser = async function (username, email, hashedPasswor
 
 userSchema.statics.signInUser = async function (username) {
   const existingUser = await this.findOne({ username });
-  
+
   if (!existingUser) {
     throw new APIError(404, "USER_NOT_FOUND", "User not found");
   }

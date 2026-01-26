@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { APIError } from "../utils/APIError.js";
+import APIError from "../utils/APIError.utils.js";
 
 export const authentication = async (req, res, next) => {
   try {
@@ -17,7 +17,8 @@ export const authentication = async (req, res, next) => {
 
     const { userId } = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
 
-    req.user = { id: userId };
+    req.user = { _id: userId };
+    
     next();
   } catch (error) {
     next(error);

@@ -13,7 +13,7 @@ export const signInToAccount = async (req, res, next) => {
       sameSite: "lax", // production: none
       maxAge: 10 * 24 * 60 * 60 * 1000,
     });
-    const response = new APIResponse(200, { existingUser, accessToken }, "You signed in successfully");
+    const response = new APIResponse(200, { existingUser, accessToken }, "You have signed in successfully");
     res.status(response.statusCode).json(response);
   } catch (error) {
     console.log(error);
