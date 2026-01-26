@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
+import userRouter from "./modules/authentication/routes/user.routes.js";
+import { errorHandler } from "./middlewares/errorHandler.middlewares.js";
 
 export const app = express();
 
@@ -23,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use("/api/users", userRouter);
-// app.use("/api/weeks", weekRouter);
+app.use("/api/user", userRouter);
+// app.use("/api/data", dataRouter);
 
-// app.use(errorHandler);
+app.use(errorHandler);
