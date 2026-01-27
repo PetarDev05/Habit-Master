@@ -1,1 +1,20 @@
-export const deleteAccount = async (req, res, next) => {};
+import APIResponse from "../../../utils/APIResponse.utils.js";
+import { deleteUserAccount } from "../services/deleteAccount.services.js";
+import { validateMongooseId } from "../validators/mongooseId.validators.js";
+
+export const deleteAccount = async (req, res, next) => {
+  try {
+    const user = req.user;
+    validateMongooseId(user._id);
+    await deleteUserAccount(user._id);
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: false, // production: true
+      sameSite: "lax", // production: none
+    });
+    const response = new APIResponse(200, null, "Account deleted successfully");
+    res.status(response.statusCode).json(response);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -60,4 +60,8 @@ userSchema.statics.deleteRefreshToken = async function (userId) {
   await this.findByIdAndUpdate(userId, { refreshToken: null });
 };
 
+userSchema.statics.deleteUserAccount = async function (userId) {
+  await this.findByIdAndDelete(userId);
+};
+
 export default model("User", userSchema);
