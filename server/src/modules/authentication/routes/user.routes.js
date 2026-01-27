@@ -9,12 +9,12 @@ import { authentication } from "../../../middlewares/auth.middlewares.js";
 const router = Router();
 
 router.route("/create-account").post(createAccount);
-router.route("/sign-in").post(signInToAccount);
-router.route("/extend-session").post(extendUserSession);
+router.route("/sign-in").patch(signInToAccount);
+router.route("/extend-session").get(extendUserSession);
 
 router.use(authentication);
 
-router.route("/sign-out").post(signOutFromTheAccount);
+router.route("/sign-out").patch(signOutFromTheAccount);
 router.route("/delete-account").delete(deleteAccount);
 
 export default router;

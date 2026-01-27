@@ -16,8 +16,6 @@ export const signInToAccount = async (req, res, next) => {
     const response = new APIResponse(200, { existingUser, accessToken }, "You have signed in successfully");
     res.status(response.statusCode).json(response);
   } catch (error) {
-    console.log(error);
-    
     next(error);
   }
 };
