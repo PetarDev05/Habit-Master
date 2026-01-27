@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import APIError from "../../../utils/APIError.utils.js";
+import APIError from "../utils/APIError.utils.js";
 
 export const validateMongooseId = (id) => {
   if (!id) {

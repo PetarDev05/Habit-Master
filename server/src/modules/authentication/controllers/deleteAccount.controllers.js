@@ -1,11 +1,9 @@
 import APIResponse from "../../../utils/APIResponse.utils.js";
 import { deleteUserAccount } from "../services/deleteAccount.services.js";
-import { validateMongooseId } from "../validators/mongooseId.validators.js";
 
 export const deleteAccount = async (req, res, next) => {
   try {
     const user = req.user;
-    validateMongooseId(user._id);
     await deleteUserAccount(user._id);
     res.clearCookie("refreshToken", {
       httpOnly: true,

@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import APIError from "../utils/APIError.utils.js";
+import { validateMongooseId } from "../validators/mongooseId.validators.js";
 
 export const authentication = async (req, res, next) => {
   try {
@@ -16,7 +17,7 @@ export const authentication = async (req, res, next) => {
     }
 
     const { userId } = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET);
-
+    validateMongooseId(userId);
     req.user = { _id: userId };
     
     next();

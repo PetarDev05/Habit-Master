@@ -26,4 +26,9 @@ const habitSchema = new Schema(
   { timestamps: true }
 );
 
+habitSchema.statics.fetchHabits = async function (userId) {
+  const habits = await this.find({ userId });
+  return habits;
+};
+
 export default model("Habit", habitSchema);

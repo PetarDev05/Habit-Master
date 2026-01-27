@@ -37,4 +37,9 @@ const checkInSchema = new Schema(
   { timestamps: true }
 );
 
+checkInSchema.statics.fetchCheckIns = async function (userId) {
+  const checkIns = await this.find({ userId });
+  return checkIns;
+};
+
 export default model("CheckIn", checkInSchema);

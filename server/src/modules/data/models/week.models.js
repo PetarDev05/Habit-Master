@@ -33,5 +33,9 @@ const weekSchema = new Schema(
   { timestamps: true }
 );
 
-export default model("Week", weekSchema);
+weekSchema.statics.fetchWeeks = async function (userId) {
+  const weeks = await this.find({ userId });
+  return weeks;
+};
 
+export default model("Week", weekSchema);

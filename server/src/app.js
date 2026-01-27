@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import userRouter from "./modules/authentication/routes/user.routes.js";
+import dataRouter from "./modules/data/routes/data.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.middlewares.js";
 
 export const app = express();
@@ -26,6 +27,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/user", userRouter);
-// app.use("/api/data", dataRouter);
+app.use("/api/data", dataRouter);
 
 app.use(errorHandler);
