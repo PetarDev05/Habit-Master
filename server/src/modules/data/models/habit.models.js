@@ -36,4 +36,8 @@ habitSchema.statics.createNewHabits = async function (habitsForInsert) {
   return newHabits;
 };
 
+habitSchema.statics.deleteHabits = async function (userId, weekId) {
+  await this.deleteMany({ userId, weekId });
+};
+
 export default model("Habit", habitSchema);

@@ -47,4 +47,8 @@ checkInSchema.statics.createNewCheckIns = async function (checkInsForInsert) {
   return newCheckIns;
 };
 
+checkInSchema.statics.deleteCheckIns = async function (userId, weekId) {
+  await this.deleteMany({ userId, weekId });
+};
+
 export default model("CheckIn", checkInSchema);
