@@ -42,4 +42,9 @@ checkInSchema.statics.fetchCheckIns = async function (userId) {
   return checkIns;
 };
 
+checkInSchema.statics.createNewCheckIns = async function (checkInsForInsert) {
+  const newCheckIns = await this.insertMany(checkInsForInsert);
+  return newCheckIns;
+};
+
 export default model("CheckIn", checkInSchema);

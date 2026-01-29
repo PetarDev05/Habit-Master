@@ -38,4 +38,14 @@ weekSchema.statics.fetchWeeks = async function (userId) {
   return weeks;
 };
 
+weekSchema.statics.createNewWeek = async function (userId, startDate, endDate) {
+  const newWeek = await this.create({ userId, startDate, endDate });
+  return newWeek;
+};
+
+weekSchema.statics.findActiveWeek = async function (userId) {
+  const activeWeek = await this.findOne({ userId, status: "active" });
+  return activeWeek;
+};
+
 export default model("Week", weekSchema);

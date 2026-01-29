@@ -31,4 +31,9 @@ habitSchema.statics.fetchHabits = async function (userId) {
   return habits;
 };
 
+habitSchema.statics.createNewHabits = async function (habitsForInsert) {
+  const newHabits = await this.insertMany(habitsForInsert);
+  return newHabits;
+};
+
 export default model("Habit", habitSchema);
