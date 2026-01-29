@@ -5,6 +5,7 @@ import { extendUserSession } from "../controllers/extendUserSession.controllers.
 import { signOutFromTheAccount } from "../controllers/signOutFromTheAccount.controllers.js";
 import { deleteAccount } from "../controllers/deleteAccount.controllers.js";
 import { authentication } from "../../../middlewares/auth.middlewares.js";
+import { authomaticCheckIn } from "../../../middlewares/authomaticCheckIn.middlewares.js";
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.route("/sign-in").patch(signInToAccount);
 router.route("/extend-session").get(extendUserSession);
 
 router.use(authentication);
+router.use(authomaticCheckIn);
 
 router.route("/sign-out").patch(signOutFromTheAccount);
 router.route("/delete-account").delete(deleteAccount);

@@ -52,4 +52,8 @@ weekSchema.statics.deleteWeek = async function (userId, weekId) {
   await this.findOneAndDelete({ userId, _id: weekId, status: "active" });
 };
 
+weekSchema.statics.updateStatus = async function (userId, weekId) {
+  await this.findOneAndUpdate({ userId, _id: weekId, status: "active" }, { status: "completed" });
+};
+
 export default model("Week", weekSchema);

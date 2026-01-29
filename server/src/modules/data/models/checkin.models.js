@@ -51,4 +51,18 @@ checkInSchema.statics.deleteCheckIns = async function (userId, weekId) {
   await this.deleteMany({ userId, weekId });
 };
 
+checkInSchema.statics.findCheckIn = async function (userId, checkInId) {
+  const checkIn = await this.findOne({ userId, _id: checkInId });
+  return checkIn;
+};
+
+checkInSchema.statics.updateCheckIn = async function (checkInId) {
+  await this.findByIdAndUpdate(checkInId, { status: "done" });
+};
+
+checkInSchema.statics.findPendingCheckIns = async function (userId, weekId) {
+  const pendingCheckins = await this.find({ userId, weekId, status: "pending" });
+  return pendingCheckins;
+};
+
 export default model("CheckIn", checkInSchema);
