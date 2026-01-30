@@ -66,7 +66,7 @@ userSchema.statics.deleteUserAccount = async function (userId) {
 
 userSchema.statics.findUserById = async function (userId) {
   const user = await this.findOne({ _id: userId });
-  
+
   if (!user) {
     throw new APIError(401, "INVALID_REFRESH_TOKEN", "Unable to extend session");
   }

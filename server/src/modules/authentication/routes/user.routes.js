@@ -12,11 +12,11 @@ const router = Router();
 router.route("/create-account").post(createAccount);
 router.route("/sign-in").patch(signInToAccount);
 router.route("/extend-session").get(extendUserSession);
+router.route("/:userId/sign-out").patch(signOutFromTheAccount);
 
 router.use(authentication);
 router.use(authomaticCheckIn);
 
-router.route("/sign-out").patch(signOutFromTheAccount);
 router.route("/delete-account").delete(deleteAccount);
 
 export default router;

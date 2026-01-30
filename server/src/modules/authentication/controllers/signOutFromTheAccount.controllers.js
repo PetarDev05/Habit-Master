@@ -1,11 +1,13 @@
 import { signOut } from "../services/signOut.services.js";
 import APIResponse from "../../../utils/APIResponse.utils.js";
+import { validateMongooseId } from "../../../validators/mongooseId.validators.js";
 
 export const signOutFromTheAccount = async (req, res, next) => {
   try {
-    const user = req.user;
-    await signOut(user._id);
-    await res.clearCookie("refreshToken", {
+    const { userId } = req.params;
+    validateMongooseId(userId);
+    await signOut(userId);
+    res.clearCookie("refreshToken", {
       httpOnly: true,
       secure: false, // production: true
       sameSite: "lax", // production: none
