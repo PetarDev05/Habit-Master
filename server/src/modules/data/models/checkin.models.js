@@ -65,4 +65,8 @@ checkInSchema.statics.findPendingCheckIns = async function (userId, weekId) {
   return pendingCheckins;
 };
 
+checkInSchema.statics.deleteAllUserCheckIns = async function (userId) {
+  await this.deleteMany({ userId });
+};
+
 export default model("CheckIn", checkInSchema);

@@ -5,8 +5,11 @@ import helmet from "helmet";
 import userRouter from "./modules/authentication/routes/user.routes.js";
 import dataRouter from "./modules/data/routes/data.routes.js";
 import { errorHandler } from "./middlewares/errorHandler.middlewares.js";
+import { registerListeners } from "./events/registerListeners.events.js";
 
 export const app = express();
+
+registerListeners();
 
 app.use(helmet());
 app.use(

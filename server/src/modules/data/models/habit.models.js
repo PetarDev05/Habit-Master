@@ -40,4 +40,8 @@ habitSchema.statics.deleteHabits = async function (userId, weekId) {
   await this.deleteMany({ userId, weekId });
 };
 
+habitSchema.statics.deleteAllUserHabits = async function (userId) {
+  await this.deleteMany({ userId });
+};
+
 export default model("Habit", habitSchema);
