@@ -12,7 +12,7 @@ router.use(authentication);
 router.use(authomaticCheckIn);
 
 router.route("/").get(fetchData).post(createNewWeek);
-router.route("/:checkInId").patch(changeCheckInStatus);
+router.route("/:checkInId/check-in").patch(changeCheckInStatus);
 router.route("/:weekId").delete(deleteWeek);
 
 export default router;
