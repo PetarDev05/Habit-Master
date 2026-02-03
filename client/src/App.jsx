@@ -11,7 +11,15 @@ import TableOfProgress from "./modules/data/pages/TableOfProgress.pages.jsx";
 import { useUserContext } from "./modules/authentication/hooks/useUserContext.hooks.jsx";
 
 const App = () => {
-  const { user } = useUserContext();
+  const { user, isLoadingUser } = useUserContext();
+
+  if (isLoadingUser) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center text-2xl font-semibold">
+        LOADING...
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -34,11 +42,11 @@ const App = () => {
         />
         <Route
           path="/sign-in"
-          element={user ? <Dashboard /> : <Navigate to="/sign-in" />}
+          element={!user ? <SignInPage /> : <Navigate to="/" />}
         />
         <Route
           path="/register"
-          element={user ? <Dashboard /> : <Navigate to="/register" />}
+          element={!user ? <RegistrationPage /> : <Navigate to="/" />}
         />
       </Routes>
       <Toaster />

@@ -11,9 +11,15 @@ export const extendSession = async (URL_BASE) => {
   const response = await fetch(url, options);
   const parsedResponse = await response.json();
 
+  const extendResult = {
+    success: parsedResponse.success,
+    message: parsedResponse.message,
+  };
+
   if (!parsedResponse.success) {
-    throw new Error(parsedResponse.message);
+    return extendResult;
   }
 
-  return parsedResponse.accessToken;
+  extendResult.accessToken = parsedResponse.accessToken;
+  return extendResult;
 };

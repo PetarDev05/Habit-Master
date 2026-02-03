@@ -9,9 +9,5 @@ export const repeatRequest = async (url, options, newAccessToken) => {
   const repeatResponse = await fetch(url, newOptions);
   const parsedRepeatResponse = await repeatResponse.json();
 
-  if (!parsedRepeatResponse.success) {
-    throw new Error(parsedRepeatResponse.message);
-  }
-
   return parsedRepeatResponse;
 };
