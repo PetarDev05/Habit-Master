@@ -4,9 +4,11 @@ import { Toaster } from "react-hot-toast";
 import RegistrationPage from "./modules/authentication/pages/RegistrationPage.pages.jsx";
 import SignInPage from "./modules/authentication/pages/SignInPage.pages.jsx";
 import Dashboard from "./modules/data/pages/Dashboard.pages.jsx";
-import Settings from "./modules/data/pages/Settings.pages.jsx";
+import Settings from "./modules/authentication/pages/Settings.pages.jsx";
 import Statistics from "./modules/data/pages/Statistics.pages.jsx";
 import TableOfProgress from "./modules/data/pages/TableOfProgress.pages.jsx";
+
+import Navigation from "./components/Navigation.components.jsx";
 
 import { useUserContext } from "./modules/authentication/hooks/useUserContext.hooks.jsx";
 
@@ -26,6 +28,7 @@ const App = () => {
 
   return (
     <div className="w-full min-h-screen">
+      {user && <Navigation />}
       <Routes>
         <Route
           index

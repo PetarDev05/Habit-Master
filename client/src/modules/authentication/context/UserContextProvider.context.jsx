@@ -1,7 +1,10 @@
 import { useEffect, useReducer, useState } from "react";
 import { UserContext } from "./UserContext.context.jsx";
 import { extendSession } from "../../../helpers/extendSession.helpers.js";
-import { setAccessToken } from "../../../utils/tokenStore.utils.js";
+import {
+  clearAccessToken,
+  setAccessToken,
+} from "../../../utils/tokenStore.utils.js";
 import { createAccount } from "../api/createAccount.api.js";
 import { signIn } from "../api/signIn.api.js";
 import { signOut } from "../api/signOut.api.js";
@@ -45,7 +48,6 @@ const UserContextProvider = ({ children }) => {
   const registerUser = async (registrationData) => {
     setIsLoadingUser(true);
     const newUserData = await createAccount(registrationData);
-    console.log(newUserData);
 
     if (!newUserData.success && newUserData.actionType === "SIGN_OUT") {
       dispatch({ type: "SIGN_OUT" });
@@ -74,8 +76,9 @@ const UserContextProvider = ({ children }) => {
   };
 
   const signOutUser = async () => {
-    const signOutConfirmation = await signOut();
+    const signOutConfirmation = await signOut(state.user._id);
     dispatch({ type: "SIGN_OUT" });
+    clearAccessToken();
     return signOutConfirmation;
   };
 
@@ -87,10 +90,12 @@ const UserContextProvider = ({ children }) => {
       deleteConfirmation.actionType === "SIGN_OUT"
     ) {
       dispatch({ type: "SIGN_OUT" });
+      clearAccessToken();
       return deleteConfirmation;
     }
 
     dispatch({ type: "SIGN_OUT" });
+    clearAccessToken();
     return deleteConfirmation;
   };
 

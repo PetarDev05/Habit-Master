@@ -1,3 +1,4 @@
+import { setAccessToken } from "../utils/tokenStore.utils.js";
 import { extendSession } from "./extendSession.helpers.js";
 import { repeatRequest } from "./repeatRequest.helpers.js";
 
@@ -15,6 +16,8 @@ export const handleErrorRoutine = async (error, URL_BASE, url, options) => {
       extendResult.actionType = "SIGN_OUT";
       return extendResult;
     }
+
+    setAccessToken(extendResult.accessToken);
 
     const repeatResult = await repeatRequest(
       url,
