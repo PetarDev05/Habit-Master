@@ -39,21 +39,23 @@ const UserContextProvider = ({ children }) => {
     user: null,
     isAuthenticated: false,
   });
+
   const [isLoadingUser, setIsLoadingUser] = useState(false);
 
   const registerUser = async (registrationData) => {
     setIsLoadingUser(true);
     const newUserData = await createAccount(registrationData);
+    console.log(newUserData);
 
     if (!newUserData.success && newUserData.actionType === "SIGN_OUT") {
       dispatch({ type: "SIGN_OUT" });
       setIsLoadingUser(false);
-      return newUserData.message;
+      return newUserData;
     }
 
-    dispatch({ type: "REGISTRATION", payload: newUserData });
+    dispatch({ type: "REGISTRATION", payload: newUserData.data });
     setIsLoadingUser(false);
-    return newUserData.message;
+    return newUserData;
   };
 
   const signInUser = async (signInData) => {
@@ -63,12 +65,12 @@ const UserContextProvider = ({ children }) => {
     if (!userData.success && userData.actionType === "SIGN_OUT") {
       dispatch({ type: "SIGN_OUT" });
       setIsLoadingUser(false);
-      return userData.message;
+      return userData;
     }
 
-    dispatch({ type: "SIGN_IN", payload: userData });
+    dispatch({ type: "SIGN_IN", payload: userData.data });
     setIsLoadingUser(false);
-    return userData.message;
+    return userData;
   };
 
   const signOutUser = async () => {
@@ -85,21 +87,11 @@ const UserContextProvider = ({ children }) => {
       deleteConfirmation.actionType === "SIGN_OUT"
     ) {
       dispatch({ type: "SIGN_OUT" });
-      return deleteConfirmation.message;
+      return deleteConfirmation;
     }
 
     dispatch({ type: "SIGN_OUT" });
-  };
-
-  const value = {
-    user: state.user,
-    isAuthenticated: state.isAuthenticated,
-    dispatchUser: dispatch,
-    isLoadingUser,
-    registerUser,
-    signInUser,
-    signOutUser,
-    deleteUser,
+    return deleteConfirmation;
   };
 
   useEffect(() => {
@@ -113,11 +105,22 @@ const UserContextProvider = ({ children }) => {
       }
 
       setAccessToken(extendResult.accessToken);
+      dispatch({ type: "SIGN_IN", payload: extendResult });
       setIsLoadingUser(false);
     };
 
     restoreSession();
   }, []);
+
+  const value = {
+    state,
+    dispatch,
+    isLoadingUser,
+    registerUser,
+    signInUser,
+    signOutUser,
+    deleteUser,
+  };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

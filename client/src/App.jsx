@@ -11,7 +11,10 @@ import TableOfProgress from "./modules/data/pages/TableOfProgress.pages.jsx";
 import { useUserContext } from "./modules/authentication/hooks/useUserContext.hooks.jsx";
 
 const App = () => {
-  const { user, isLoadingUser } = useUserContext();
+  const {
+    state: { user },
+    isLoadingUser,
+  } = useUserContext();
 
   if (isLoadingUser) {
     return (
@@ -22,7 +25,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="w-full min-h-screen">
       <Routes>
         <Route
           index

@@ -8,5 +8,5 @@ export const extendSession = async (refreshToken) => {
   const user = await User.findUserById(userId);
   await compareHashes(refreshToken, user.refreshToken);
   const accessToken = generateAccessToken(userId);
-  return { accessToken };
+  return { user, accessToken };
 };

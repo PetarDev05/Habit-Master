@@ -20,6 +20,7 @@ export const extendSession = async (URL_BASE) => {
     return extendResult;
   }
 
-  extendResult.accessToken = parsedResponse.accessToken;
+  extendResult.accessToken = parsedResponse.data.accessToken;
+  extendResult.existingUser = parsedResponse.data.user;
   return extendResult;
 };
