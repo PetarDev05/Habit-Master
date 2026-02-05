@@ -5,7 +5,7 @@ export const useUserContext = () => {
   const context = useContext(UserContext);
 
   if (!context) {
-    console.log("No context available");
+    console.log("No user context available");
     return;
   }
 

@@ -8,9 +8,13 @@ export const changeCheckInStatus = async (req, res, next) => {
     const user = req.user;
     const { checkInId } = req.params;
     validateMongooseId(checkInId);
-    await changeCheckIn(user._id, checkInId);
-    await updateWeekStatus(user._id);
-    const response = new APIResponse(200, null, "Checked-in successfully");
+    const updatedCheckIn = await changeCheckIn(user._id, checkInId);
+    const updatedWeekId = await updateWeekStatus(user._id);
+    const response = new APIResponse(
+      200,
+      { updatedCheckIn, updatedWeekId },
+      "Checked-in successfully"
+    );
     res.status(response.statusCode).json(response);
   } catch (error) {
     next(error);

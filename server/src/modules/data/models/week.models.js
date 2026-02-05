@@ -53,7 +53,11 @@ weekSchema.statics.deleteWeek = async function (userId, weekId) {
 };
 
 weekSchema.statics.updateStatus = async function (userId, weekId) {
-  await this.findOneAndUpdate({ userId, _id: weekId, status: "active" }, { status: "completed" });
+  const updatedWeek = await this.findOneAndUpdate(
+    { userId, _id: weekId, status: "active" },
+    { status: "completed" }
+  );
+  return updatedWeek;
 };
 
 weekSchema.statics.deleteAllUserWeeks = async function (userId) {

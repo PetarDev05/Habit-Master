@@ -63,7 +63,7 @@
 #### 1. Fetch data
 
 - Method: GET
-- Route: /api/user/
+- Route: /api/data/
 - Params: /
 - Body: /
 - Success Response: { weeks, habits, checkIns }
@@ -73,7 +73,7 @@
 #### 2. Create new week
 
 - Method: POST
-- Route: /api/user/
+- Route: /api/data/
 - Params: /
 - Body: { userDateString, habits }
 - Success Response: { newWeek, newHabits, newCheckIns }
@@ -83,17 +83,17 @@
 #### 3. Change checkIn status
 
 - Method: PATCH
-- Route: /api/user/:checkInId/check-in
+- Route: /api/data/:checkInId/check-in
 - Params: { checkInId }
 - Body: /
-- Success Response: null
+- Success Response: { updatedCheckIn, updatedWeekId }
 
 ---
 
 #### 4. Delete week
 
 - Method: DELETE
-- Route: /api/user/:weekId
+- Route: /api/data/:weekId
 - Params: { weekId }
 - Body: /
 - Success Response: null

@@ -49,8 +49,7 @@ const UserContextProvider = ({ children }) => {
     setIsLoadingUser(true);
     const newUserData = await createAccount(registrationData);
 
-    if (!newUserData.success && newUserData.actionType === "SIGN_OUT") {
-      dispatch({ type: "SIGN_OUT" });
+    if (!newUserData.success) {
       setIsLoadingUser(false);
       return newUserData;
     }
@@ -64,8 +63,7 @@ const UserContextProvider = ({ children }) => {
     setIsLoadingUser(true);
     const userData = await signIn(signInData);
 
-    if (!userData.success && userData.actionType === "SIGN_OUT") {
-      dispatch({ type: "SIGN_OUT" });
+    if (!userData.success) {
       setIsLoadingUser(false);
       return userData;
     }
@@ -85,11 +83,7 @@ const UserContextProvider = ({ children }) => {
   const deleteUser = async () => {
     const deleteConfirmation = await deleteAccount();
 
-    if (
-      !deleteConfirmation.success &&
-      deleteConfirmation.actionType === "SIGN_OUT"
-    ) {
-      dispatch({ type: "SIGN_OUT" });
+    if (!deleteConfirmation.success) {
       clearAccessToken();
       return deleteConfirmation;
     }
@@ -98,6 +92,18 @@ const UserContextProvider = ({ children }) => {
     clearAccessToken();
     return deleteConfirmation;
   };
+
+  useEffect(() => {
+    const handler = () => {
+      dispatch({ type: "SIGN_OUT" });
+    };
+
+    window.addEventListener("user:sign-out", handler);
+
+    return () => {
+      window.removeEventListener("user:sign-out", handler);
+    };
+  }, []);
 
   useEffect(() => {
     const restoreSession = async () => {
@@ -112,6 +118,7 @@ const UserContextProvider = ({ children }) => {
       setAccessToken(extendResult.accessToken);
       dispatch({ type: "SIGN_IN", payload: extendResult });
       setIsLoadingUser(false);
+      window.dispatchEvent(new Event("user:session-extended"))
     };
 
     restoreSession();

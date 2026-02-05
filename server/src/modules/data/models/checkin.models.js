@@ -57,7 +57,8 @@ checkInSchema.statics.findCheckIn = async function (userId, checkInId) {
 };
 
 checkInSchema.statics.updateCheckIn = async function (checkInId) {
-  await this.findByIdAndUpdate(checkInId, { status: "done" });
+  const updatedCheckIn = await this.findByIdAndUpdate(checkInId, { status: "done" });
+  return updatedCheckIn;
 };
 
 checkInSchema.statics.findPendingCheckIns = async function (userId, weekId) {

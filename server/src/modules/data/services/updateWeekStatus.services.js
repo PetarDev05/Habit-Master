@@ -8,6 +8,9 @@ export const updateWeekStatus = async (userId) => {
   }
   const pendingCheckins = await CheckIn.findPendingCheckIns(userId, activeWeek._id);
   if (!pendingCheckins || !pendingCheckins.length) {
-    await Week.updateStatus(userId, activeWeek._id);
+    const updatedWeek = await Week.updateStatus(userId, activeWeek._id);
+    return updatedWeek._id;
   }
+
+  return null;
 };
