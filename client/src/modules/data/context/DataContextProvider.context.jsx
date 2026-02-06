@@ -8,8 +8,6 @@ import { deleteWeekData } from "../api/deleteWeekData.api.js";
 const reducer = (state, { type, payload }) => {
   switch (type) {
     case "FETCH_DATA":
-      console.log(payload);
-
       return {
         ...state,
         weeks: payload.weeks,
@@ -33,7 +31,7 @@ const reducer = (state, { type, payload }) => {
             ? payload.updatedCheckIn
             : checkIn,
         ),
-        activeWeek: payload.activeWeek._id
+        activeWeek: payload.updatedWeekId
           ? (state.activeWeek.status = "completed")
           : state.activeWeek,
       };
@@ -111,7 +109,6 @@ const DataContextProvider = ({ children }) => {
       setIsLoadingData(true);
 
       const fetchedData = await fetchAllData();
-      console.log(fetchedData);
 
       if (!fetchedData.success) {
         setIsLoadingData(false);

@@ -7,4 +7,5 @@ export const changeCheckIn = async (userId, checkInId) => {
   validateCheckInData(checkIn);
   compareDates(checkIn.dueDate);
   const updatedCheckIn = await CheckIn.updateCheckIn(checkIn._id);
+  return updatedCheckIn;
 };
