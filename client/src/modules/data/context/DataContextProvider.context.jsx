@@ -19,8 +19,8 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         weeks: [payload.newWeek, ...state.weeks],
-        habits: [payload.newHabits, ...state.habits],
-        checkIns: [payload.newCheckIns, ...state.checkIns],
+        habits: [...payload.newHabits, ...state.habits],
+        checkIns: [...payload.newCheckIns, ...state.checkIns],
         activeWeek: payload.newWeek,
       };
     case "CHECK-IN":
