@@ -5,15 +5,18 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import UserContextProvider from "./modules/authentication/context/UserContextProvider.context.jsx";
 import DataContextProvider from "./modules/data/context/DataContextProvider.context.jsx";
+import GlobalContextProvider from "./context/GlobalContextProvider.context.jsx";
 
 createRoot(document.getElementById("root")).render(
   <UserContextProvider>
-    <DataContextProvider>
-      <BrowserRouter>
-        <StrictMode>
-          <App />
-        </StrictMode>
-      </BrowserRouter>
-    </DataContextProvider>
+    <GlobalContextProvider>
+      <DataContextProvider>
+        <BrowserRouter>
+          <StrictMode>
+            <App />
+          </StrictMode>
+        </BrowserRouter>
+      </DataContextProvider>
+    </GlobalContextProvider>
   </UserContextProvider>,
 );

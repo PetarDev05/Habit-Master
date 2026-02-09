@@ -11,6 +11,7 @@ import TableOfProgress from "./modules/data/pages/TableOfProgress.pages.jsx";
 import Navigation from "./components/Navigation.components.jsx";
 
 import { useUserContext } from "./modules/authentication/hooks/useUserContext.hooks.jsx";
+import Header from "./components/Header.components.jsx";
 
 const App = () => {
   const {
@@ -29,6 +30,7 @@ const App = () => {
   return (
     <div className="w-full min-h-screen">
       {user && <Navigation />}
+      {user && <Header />}
       <Routes>
         <Route
           index

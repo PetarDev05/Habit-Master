@@ -5,7 +5,6 @@ import { toast } from "react-hot-toast";
 
 const RegistrationForm = () => {
   const { registerUser } = useUserContext();
-
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -34,11 +33,13 @@ const RegistrationForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-70 flex flex-col items-center gap-5"
+      className="w-full max-w-100 flex flex-col items-center gap-7 shadow-[0px_0px_7px_1px_var(--shadow-light)] p-10 rounded-xl "
     >
+      <h2 className="text-3xl font-semibold text-(--primary)">Habit Master</h2>
+      <p className="w-full text-md text-(--primary) text-center">Register here</p>
       <input
         type="text"
-        className="border w-full px-2 py-1"
+        className="w-full py-2 px-3 border border-(--border-light) rounded-md focus:border-(--primary) outline-none"
         name="username"
         onChange={handleChange}
         value={formData.username}
@@ -46,7 +47,7 @@ const RegistrationForm = () => {
       />
       <input
         type="text"
-        className="border w-full px-2 py-1"
+        className="w-full py-2 px-3 border border-(--border-light) rounded-md focus:border-(--primary) outline-none"
         name="email"
         onChange={handleChange}
         value={formData.email}
@@ -54,22 +55,27 @@ const RegistrationForm = () => {
       />
       <input
         type="text"
-        className="border w-full px-2 py-1"
+        className="w-full py-2 px-3 border border-(--border-light) rounded-md focus:border-(--primary) outline-none"
         name="password"
         onChange={handleChange}
         value={formData.password}
         placeholder="Password"
       />
-      <button type="submit" className="w-full bg-gray-200 py-1 border">
-        Register
-      </button>
-      <p className="">
-        Have an account?
-        <Link className="text-blue-700" to="/sign-in">
-          {" "}
-          Sign in here
-        </Link>
-      </p>
+      <div className="w-full flex flex-col items-center gap-3">
+        <button
+          type="submit"
+          className="w-full py-2 rounded-md bg-(--primary) text-(--white) cursor-pointer"
+        >
+          Register
+        </button>
+        <p className="text-(--text)">
+          Have an account?
+          <Link className="text-(--primary)" to="/sign-in">
+            {" "}
+            Sign in here
+          </Link>
+        </p>
+      </div>
     </form>
   );
 };

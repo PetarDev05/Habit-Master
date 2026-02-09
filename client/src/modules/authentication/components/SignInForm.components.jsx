@@ -33,14 +33,18 @@ const SignInForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-70 flex flex-col items-center gap-5"
+      className="w-full max-w-100 flex flex-col items-center gap-7 shadow-[0px_0px_7px_1px_var(--shadow-light)] p-10 rounded-xl"
     >
+      <h2 className="text-3xl font-semibold text-(--primary)">Habit Master</h2>
+      <p className="w-full text-md text-(--primary) text-center">
+        Sign in to your account
+      </p>
       <input
         onChange={handleChange}
         name="username"
         value={formData.username}
         type="text"
-        className="border w-full px-2 py-1"
+        className="w-full py-2 px-3 border border-(--border-light) rounded-md focus:border-(--primary) outline-none"
         placeholder="Username"
       />
       <input
@@ -48,17 +52,21 @@ const SignInForm = () => {
         name="password"
         value={formData.password}
         type="text"
-        className="border w-full px-2 py-1"
+        className="w-full py-2 px-3 border border-(--border-light) rounded-md focus:border-(--primary) outline-none"
         placeholder="Password"
       />
-      <button className="w-full bg-gray-200 py-1 border">Sign in</button>
-      <p className="">
-        Don't have an account?
-        <Link className="text-blue-700" to="/register">
-          {" "}
-          Register here
-        </Link>
-      </p>
+      <div className="w-full flex flex-col items-center gap-3">
+        <button className="w-full py-2 rounded-md bg-(--primary) text-(--white) cursor-pointer">
+          Sign in
+        </button>
+        <p className="text-(--text)">
+          Don't have an account?
+          <Link className="text-(--primary)" to="/register">
+            {" "}
+            Register here
+          </Link>
+        </p>
+      </div>
     </form>
   );
 };
