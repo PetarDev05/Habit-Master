@@ -32,7 +32,10 @@ const reducer = (state, { type, payload }) => {
             : checkIn,
         ),
         activeWeek: payload.updatedWeekId
-          ? (state.activeWeek.status = "completed")
+          ? {
+              ...state.activeWeek,
+              status: "completed",
+            }
           : state.activeWeek,
       };
     case "DELETE_WEEK":

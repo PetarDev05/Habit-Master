@@ -2,7 +2,7 @@ import RegistrationForm from "../components/RegistrationForm.components.jsx";
 
 const RegistrationPage = () => {
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-screen flex items-center justify-center bg-(--white)">
       <RegistrationForm />
     </div>
   );

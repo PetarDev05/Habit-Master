@@ -3,7 +3,7 @@ import HabitCard from "./HabitCard.components.jsx";
 
 const HabitContainer = ({ checkInUser }) => {
   const {
-    state: { habits, activeWeek },
+    state: { habits, activeWeek, checkIns },
   } = useDataContext();
 
   let activeHabits = habits?.filter((habit) => habit.weekId === activeWeek._id);
@@ -11,7 +11,12 @@ const HabitContainer = ({ checkInUser }) => {
   return (
     <div className="w-full flex flex-col items-center gap-5">
       {activeHabits?.map((habit) => (
-        <HabitCard key={habit._id} habit={habit} checkInUser={checkInUser} />
+        <HabitCard
+          key={habit._id}
+          habit={habit}
+          checkIns={checkIns}
+          checkInUser={checkInUser}
+        />
       ))}
     </div>
   );

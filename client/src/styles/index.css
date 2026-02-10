@@ -17,6 +17,10 @@
   --tog-bg-dark: #001025;
   --tog-card-dark: #002657;
   --tog-border: #4797ff;
+  --super-light-white: #f9f9f9;
+  --skipped: #4f80f3;
+  --missed: #e23232;
+  --done: #44e891;
 }
 
 * {
@@ -25,6 +29,10 @@
 
 body {
   background-color: var(--bg);
+}
+
+@theme {
+  --shadow-checkIn: inset -1px -1px var(--shadow-light);
 }
 
 /*
