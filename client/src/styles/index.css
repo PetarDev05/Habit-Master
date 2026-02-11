@@ -9,7 +9,7 @@
   --hover: #ededed;
   --text: #4c4c4c;
   --red: #af0f0f;
-  --text-light: #909090;
+  --text-light: #848484;
   --separator: #dfdfdf;
   --white: #fff;
   --bg: #f3f8ff;
@@ -21,6 +21,13 @@
   --skipped: #4f80f3;
   --missed: #e23232;
   --done: #44e891;
+  --yellow: #f59e0b;
+  --yellow-light: #ffff34;
+  --pink: #d946ef;
+  --blue: #3b82f6;
+  --yellow-light: #ffda9a;
+  --pink-light: #f5b1ff;
+  --blue-light: #b6d2ff;
 }
 
 * {
@@ -28,7 +35,8 @@
 }
 
 body {
-  background-color: var(--bg);
+  background-image: conic-gradient(var(--blue-light), var(--yellow-light), var(--pink-light), var(--blue-light));
+  backdrop-filter: blur(10px);
 }
 
 @theme {

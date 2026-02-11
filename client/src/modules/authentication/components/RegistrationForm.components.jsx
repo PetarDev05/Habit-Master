@@ -33,7 +33,7 @@ const RegistrationForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-100 flex flex-col items-center gap-7 shadow-[0px_0px_7px_1px_var(--shadow-light)] p-10 rounded-xl "
+      className="w-full max-w-100 flex flex-col items-center bg-(--white)/60 backdrop-blur-2xl gap-7 shadow-[0px_0px_7px_1px_var(--shadow-light)] p-10 rounded-xl "
     >
       <h2 className="text-3xl font-semibold text-(--primary)">Habit Master</h2>
       <p className="w-full text-md text-(--primary) text-center">Register here</p>

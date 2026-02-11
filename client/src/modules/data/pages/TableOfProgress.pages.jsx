@@ -15,17 +15,17 @@ const TableOfProgress = () => {
 
   return (
     <div className="w-full min-h-screen pt-19">
-      <div className="w-full max-w-150 bg-(--white) shadow-[0px_0px_3px_var(--shadow-light)] rounded-xl fixed top-1/2 left-1/2 -translate-1/2 p-12 flex flex-col items-start gap-7">
+      <div className="w-full max-w-150 bg-(--white) shadow-[0px_0px_3px_var(--shadow-light)] rounded-xl fixed top-1/2 left-1/2 -translate-1/2 p-12 flex flex-col items-start gap-10">
         <h2 className="text-2xl font-semibold">Table of weekly progress</h2>
         <div className="w-full flex flex-row items-start gap-10 ">
-          <div className="flex-1 flex flex-col items-start gap-6 overflow-hidden">
+          <div className="flex-1 flex flex-col items-start gap-5 overflow-hidden">
             {activeHabits?.map((habit) => (
-              <p key={habit._id} className="text-xl ">
+              <p key={habit._id} className="text-xl text-(--text-light)">
                 {habit.title}
               </p>
             ))}
           </div>
-          <div className="grid grid-cols-7 gap-6">
+          <div className="grid grid-cols-7 gap-5">
             {activeCheckIns?.map((checkIn) => (
               <div
                 key={checkIn._id}
