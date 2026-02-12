@@ -8,7 +8,7 @@ const HabitCard = ({ habit, checkIns, checkInUser }) => {
   return (
     <div
       key={habit._id}
-      className="w-full rounded-lg shadow-[0px_0px_5px_1px_var(--shadow-light)] bg-(--white) flex flex-row items-center justify-between p-7"
+      className="w-full rounded-lg shadow-[0px_0px_5px_1px_var(--shadow-light)] bg-(--white) flex flex-row items-center justify-between px-7 py-6"
     >
       <p className="flex-2 text-xl font-semibold">{habit.title}</p>
 

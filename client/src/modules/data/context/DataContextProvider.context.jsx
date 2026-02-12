@@ -40,6 +40,7 @@ const reducer = (state, { type, payload }) => {
       };
     case "DELETE_WEEK":
       return {
+        ...state,
         weeks: state.weeks.filter((week) => {
           week._id === state.activeWeek._id;
         }),
@@ -51,6 +52,15 @@ const reducer = (state, { type, payload }) => {
         }),
         activeWeek: null,
       };
+    case "CLEAR_DATA":
+      return {
+        ...state,
+        weeks: null,
+        habits: null,
+        checkIns: null,
+        activeWeek: null,
+      };
+
     default:
       return state;
   }
@@ -122,13 +132,25 @@ const DataContextProvider = ({ children }) => {
       setIsLoadingData(false);
       return fetchedData;
     };
-
+    
     window.addEventListener("user:session-extended", fetchData);
 
     return () => {
       window.removeEventListener("user:session-extended", fetchData);
     };
   }, []);
+
+  useEffect(() => {
+      const handler = () => {
+        dispatch({ type: "CLEAR_DATA" });
+      };
+  
+      window.addEventListener("user:clear-data", handler);
+  
+      return () => {
+        window.removeEventListener("user:clear-data", handler);
+      };
+    }, []);
 
   const value = {
     state,

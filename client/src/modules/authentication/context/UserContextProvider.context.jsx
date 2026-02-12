@@ -55,6 +55,8 @@ const UserContextProvider = ({ children }) => {
     }
 
     dispatch({ type: "REGISTRATION", payload: newUserData.data });
+    setAccessToken(newUserData.data.accessToken);
+    window.dispatchEvent(new Event("user:session-extended"));
     setIsLoadingUser(false);
     return newUserData;
   };
@@ -69,6 +71,8 @@ const UserContextProvider = ({ children }) => {
     }
 
     dispatch({ type: "SIGN_IN", payload: userData.data });
+    setAccessToken(userData.data.accessToken);
+    window.dispatchEvent(new Event("user:session-extended"));
     setIsLoadingUser(false);
     return userData;
   };
@@ -76,6 +80,7 @@ const UserContextProvider = ({ children }) => {
   const signOutUser = async () => {
     const signOutConfirmation = await signOut(state.user._id);
     dispatch({ type: "SIGN_OUT" });
+    window.dispatchEvent(new Event("user:clear-data"));
     clearAccessToken();
     return signOutConfirmation;
   };
@@ -89,6 +94,7 @@ const UserContextProvider = ({ children }) => {
     }
 
     dispatch({ type: "SIGN_OUT" });
+    window.dispatchEvent(new Event("user:clear-data"));
     clearAccessToken();
     return deleteConfirmation;
   };
@@ -96,6 +102,7 @@ const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const handler = () => {
       dispatch({ type: "SIGN_OUT" });
+      clearAccessToken();
     };
 
     window.addEventListener("user:sign-out", handler);
@@ -118,7 +125,7 @@ const UserContextProvider = ({ children }) => {
       setAccessToken(extendResult.accessToken);
       dispatch({ type: "SIGN_IN", payload: extendResult });
       setIsLoadingUser(false);
-      window.dispatchEvent(new Event("user:session-extended"))
+      window.dispatchEvent(new Event("user:session-extended"));
     };
 
     restoreSession();

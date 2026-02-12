@@ -5,6 +5,7 @@ import { repeatRequest } from "./repeatRequest.helpers.js";
 export const handleErrorRoutine = async (error, URL_BASE, url, options) => {
   if (error.code === "TOKEN_MALFORMED") {
     window.dispatchEvent(new Event("user:sign-out"));
+    window.dispatchEvent(new Event("user:clear-data"));
     return {
       success: false,
       message: error.message,
@@ -12,8 +13,11 @@ export const handleErrorRoutine = async (error, URL_BASE, url, options) => {
   } else if (error.code === "TOKEN_EXPIRED") {
     const extendResult = await extendSession(URL_BASE);
 
+    console.log("EXTEND RESULT: ", extendResult);
+
     if (!extendResult.success) {
       window.dispatchEvent(new Event("user:sign-out"));
+      window.dispatchEvent(new Event("user:clear-data"));
       return extendResult;
     }
 
