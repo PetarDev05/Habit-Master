@@ -6,7 +6,7 @@ import { BsBarChart } from "react-icons/bs";
 
 const Navigation = () => {
   return (
-    <nav className="fixed bottom-0 right-0 left-0 w-full flex flex-row items-center justify-center bg-(--white) shadow gap-10 p-5 z-50">
+    <nav className="fixed bottom-0 right-0 left-0 w-full flex flex-row items-center justify-center bg-(--white) shadow gap-10 p-3 z-50">
       <Link to="/table" className="p-3 rounded-lg text-3xl hover:bg-(--bg)">
         <SlGrid />
       </Link>

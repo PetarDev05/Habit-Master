@@ -1,7 +1,7 @@
 import { useDataContext } from "../../hooks/useDataContext.hooks.jsx";
 import HabitCard from "./HabitCard.components.jsx";
 
-const HabitContainer = ({ checkInUser }) => {
+const HabitContainer = ({ checkInUser, isLoadingData }) => {
   const {
     state: { habits, activeWeek, checkIns },
   } = useDataContext();
@@ -16,6 +16,7 @@ const HabitContainer = ({ checkInUser }) => {
           habit={habit}
           checkIns={checkIns}
           checkInUser={checkInUser}
+          isLoadingData={isLoadingData}
         />
       ))}
     </div>

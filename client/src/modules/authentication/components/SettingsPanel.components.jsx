@@ -16,13 +16,13 @@ const SettingsPanel = () => {
         <div className="py-6 flex flex-row items-center gap-5">
           <button
             onClick={signOutUser}
-            className="px-5 py-2 rounded-lg bg-(--primary) text-(--white)"
+            className="px-5 py-2 rounded-lg bg-(--primary) text-(--white) cursor-pointer"
           >
             Sign out
           </button>
           <button
             onClick={deleteUser}
-            className="px-5 py-2 rounded-lg bg-(--red) text-(--white)"
+            className="px-5 py-2 rounded-lg bg-(--red) text-(--white) cursor-pointer"
           >
             Delete account
           </button>

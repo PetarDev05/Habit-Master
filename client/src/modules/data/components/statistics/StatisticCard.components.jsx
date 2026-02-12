@@ -24,7 +24,15 @@ const StatisticCard = () => {
     (checkIn) => checkIn.status === "done",
   );
 
-  const value = (Number(activeCheckIns.length) / Number(checkIns.length)) * 100;
+  const totalCheckIns = checkIns?.filter(
+    (checkIn) =>
+      checkIn.status === "done" ||
+      checkIn.status === "missed" ||
+      checkIn.status === "pending",
+  );
+
+  const value =
+    (Number(activeCheckIns.length) / Number(totalCheckIns.length)) * 100;
 
   const activeHabits = habits?.filter(
     (habit) => habit.weekId === activeWeek._id,

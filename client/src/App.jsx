@@ -12,6 +12,7 @@ import Navigation from "./components/Navigation.components.jsx";
 
 import { useUserContext } from "./modules/authentication/hooks/useUserContext.hooks.jsx";
 import Header from "./components/Header.components.jsx";
+import LoadingScreen from "./components/LoadingScreen.components.jsx";
 
 const App = () => {
   const {
@@ -20,11 +21,7 @@ const App = () => {
   } = useUserContext();
 
   if (isLoadingUser) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center text-2xl font-semibold">
-        LOADING...
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   return (
@@ -57,7 +54,28 @@ const App = () => {
           element={!user ? <RegistrationPage /> : <Navigate to="/" />}
         />
       </Routes>
-      <Toaster />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            borderRadius: "8px",
+            fontSize: "14px",
+          },
+          success: {
+            style: {
+              background: "#16a34a",
+              color: "#ffffff",
+            },
+          },
+          error: {
+            style: {
+              background: "#dc2626",
+              color: "#ffffff",
+            },
+          },
+        }}
+      />
     </div>
   );
 };

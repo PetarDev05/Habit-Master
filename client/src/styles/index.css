@@ -34,11 +34,6 @@
   font-family: "Poppins";
 }
 
-body {
-  background-image: conic-gradient(var(--blue-light), var(--yellow-light), var(--pink-light), var(--blue-light));
-  backdrop-filter: blur(10px);
-}
-
 @theme {
   --shadow-checkIn: inset -1px -1px var(--shadow-light);
 }

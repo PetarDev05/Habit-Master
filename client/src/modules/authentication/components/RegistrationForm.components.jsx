@@ -22,7 +22,11 @@ const RegistrationForm = () => {
       });
     }
 
-    toast(newUser.message);
+    if (newUser.success) {
+      toast.success(newUser.message);
+    } else {
+      toast.error(newUser.message);
+    }
   };
 
   const handleChange = (e) => {
@@ -36,7 +40,9 @@ const RegistrationForm = () => {
       className="w-full max-w-100 flex flex-col items-center bg-(--white)/60 backdrop-blur-2xl gap-7 shadow-[0px_0px_7px_1px_var(--shadow-light)] p-10 rounded-xl "
     >
       <h2 className="text-3xl font-semibold text-(--primary)">Habit Master</h2>
-      <p className="w-full text-md text-(--primary) text-center">Register here</p>
+      <p className="w-full text-md text-(--primary) text-center">
+        Register here
+      </p>
       <input
         type="text"
         className="w-full py-2 px-3 border border-(--border-light) rounded-md focus:border-(--primary) outline-none"

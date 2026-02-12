@@ -22,7 +22,11 @@ const SignInForm = () => {
       });
     }
 
-    toast(existingUser.message);
+    if (existingUser.success) {
+      toast.success(existingUser.message);
+    } else {
+      toast.error(existingUser.message);
+    }
   };
 
   const handleChange = (e) => {

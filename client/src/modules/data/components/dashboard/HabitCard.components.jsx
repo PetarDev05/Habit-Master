@@ -24,7 +24,7 @@ const HabitCard = ({ habit, checkIns, checkInUser }) => {
       <div className="flex-1 flex items-center justify-end">
         <button
           onClick={() => checkInUser(habit._id)}
-          className=" bg-(--primary) text-2xl p-1  text-(--white) rounded-full text-md cursor-pointer"
+          className={`bg-(--primary) text-2xl p-1  text-(--white) rounded-full text-md cursor-pointer`}
         >
           <HiOutlineCheckCircle />
         </button>

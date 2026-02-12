@@ -55,7 +55,11 @@ const Panel = ({ createNewWeek, isLoadingData }) => {
     };
 
     const newData = await createNewWeek(newWeekData);
-    toast(newData.message);
+    if (newData.success) {
+      toast.success(newData.message);
+    } else {
+      toast.error(newData.message);
+    }
     setShowPanel(false);
     setDate("");
     setNewHabits([]);
